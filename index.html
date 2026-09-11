@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Szkoła Językowa - Zdaję bez problemu</title>
+    <style>
+        /* CSS RESET & ZMIENNE KOLORÓW (BRITISH FLAG PALETTE) */
+        :root {
+            --uk-navy: #012169;      /* Głęboki granat brytyjski */
+            --uk-red: #C8102E;       /* Brytyjska czerwień */
+            --uk-white: #FFFFFF;     /* Czysta biel */
+            --bg-light: #F4F6FA;     /* Jasne tło sekcji */
+            --text-dark: #1C2434;    /* Ciemny tekst */
+            --text-muted: #515B6F;   /* Stonowany tekst */
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--uk-white);
+        }
+
+        /* NAGŁÓWEK Z PASEM BRYTYJSKICH BARW */
+        header {
+            background-color: var(--uk-white);
+            border-bottom: 4px solid var(--uk-red);
+            box-shadow: 0 4px 12px rgba(1, 33, 105, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-stripe {
+            height: 5px;
+            background: linear-gradient(90deg, var(--uk-navy) 0%, var(--uk-navy) 40%, var(--uk-red) 40%, var(--uk-red) 60%, var(--uk-navy) 60%, var(--uk-navy) 100%);
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--uk-navy);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--uk-red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.8rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--uk-navy);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        nav a:hover {
+            color: var(--uk-red);
+            background-color: rgba(200, 16, 46, 0.06);
+        }
+
+        /* SEKCJA HERO / BANER GŁÓWNY */
+        .hero {
+            background: linear-gradient(135deg, var(--uk-navy) 0%, #00123a 100%);
+            color: var(--uk-white);
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 5px solid var(--uk-red);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.6;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background-color: var(--uk-red);
+            color: var(--uk-white);
+            padding: 0.9rem 2.2rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 6px;
+            box-shadow: 0 4px 14px rgba(200, 16, 46, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #a00c24;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(200, 16, 46, 0.5);
+        }
+
+        /* UKŁAD SEKCJI */
+        section {
+            padding: 4.5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-bg {
+            background-color: var(--bg-light);
+            border-top: 1px solid #e2e8f0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .inner-section {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            color: var(--uk-navy);
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 800;
+            position: relative;
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--uk-red);
+            margin: 0.8rem auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2.5rem auto;
+            font-size: 1.1rem;
+        }
+
+        /* SIATKA KART */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* STYLIZACJA KLIKALNYCH KART OFERTY */
+        .card-link {
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .card {
+            background: var(--uk-white);
+            padding: 2.2rem 1.8rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(1, 33, 105, 0.04);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--uk-navy);
+            transition: background-color 0.3s ease;
+        }
+
+        .card-link:hover .card {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(1, 33, 105, 0.12);
+            border-color: #cbd5e1;
+        }
+
+        .card-link:hover .card::before {
+            background-color: var(--uk-red);
+        }
+
+        .card h3 {
+            color: var(--uk-navy);
+            font-size: 1.35rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card .role {
+            font-weight: 700;
+            color: var(--uk-red);
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
+
+        .click-more {
+            display: inline-block;
+            margin-top: 1.2rem;
+            color: var(--uk-navy);
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: underline;
+        }
+
+        .card-link:hover .click-more {
+            color: var(--uk-red);
+        }
+
+        /* SZCZEGÓŁOWE OPISY KURSU */
+        .course-detail-box {
+            background: var(--uk-white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid var(--uk-red);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 14px rgba(1, 33, 105, 0.05);
+            scroll-margin-top: 100px; /* Offset dla płynnego przewijania z uwzględnieniem nagłówka */
+        }
+
+        .course-detail-box h3 {
+            color: var(--uk-navy);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-detail-box ul {
+            margin: 1rem 0 1.5rem 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .course-detail-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            background-color: var(--uk-navy);
+            color: var(--uk-white);
+            padding: 0.6rem 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--uk-red);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--uk-navy);
+            color: var(--uk-navy);
+            padding: 0.6rem 1.4rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-light);
+        }
+
+        /* SEKCJA KONTAKTOWA */
+        .contact-box {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            background: var(--uk-white);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border-left: 6px solid var(--uk-red);
+            box-shadow: 0 6px 16px rgba(1, 33, 105, 0.06);
+        }
+
+        .contact-item h3 {
+            color: var(--uk-navy);
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+        }
+
+        .contact-item a {
+            color: var(--uk-red);
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* STOPKA */
+        footer {
+            background-color: var(--uk-navy);
+            color: var(--uk-white);
+            text-align: center;
+            padding: 2.5rem 2rem;
+            border-top: 5px solid var(--uk-red);
+        }
+
+        footer p {
+            color: #a0aec0;
+            font-size: 0.95rem;
+        }
+
+        /* RESPONSYWNOŚĆ */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .hero h1 {
+                font-size: 2.1rem;
+            }
+            nav ul {
+                gap: 0.8rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PASEK FLAGI I NAGŁÓWEK -->
+    <div class="top-stripe"></div>
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo">Zdaję <span>bez problemu</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#o-szkole">O szkole</a></li>
+                    <li><a href="#kadra">Kadra</a></li>
+                    <li><a href="#oferta">Oferta</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- BANER GŁÓWNY (HERO) -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Otwórz drzwi do świata z językiem angielskim</h1>
+            <p>Skuteczne przygotowanie do egzaminów, przełamywanie barier w mówieniu i wysoki standard nauczania.</p>
+            <a href="#kontakt" class="btn-primary">Zapisz się na zajęcia</a>
+        </div>
+    </div>
+
+    <!-- 1. SEKCJA: O SZKOLE -->
+    <section id="o-szkole">
+        <h2>O naszej szkole</h2>
+        <p class="section-desc">
+            Łączymy pasję do języka z nowoczesnymi metodami nauczania. Pomagamy uczniom w każdym wieku osiągać pewność siebie w mówieniu i zdawać egzaminy bez zbędnego stresu.
+        </p>
+    </section>
+
+    <!-- 2. SEKCJA: KADRA -->
+    <div class="section-bg">
+        <section id="kadra" class="inner-section">
+            <h2>Nasz Zespół</h2>
+            <p class="section-desc">Poznaj lektorów, którzy z zaangażowaniem prowadzą nasze zajęcia.</p>
+            
+            <div class="grid-3">
+                <div class="card">
+                    <h3>Anna Kowalska</h3>
+                    <div class="role">Lektorka Języka Angielskiego</div>
+                    <p>Specjalizuje się w przygotowywaniu uczniów do egzaminów ósmoklasisty oraz matury. Z pasją buduje pewność siebie u młodzieży.</p>
+                </div>
+                <div class="card">
+                    <h3>Piotr Nowak</h3>
+                    <div class="role">Egzaminator & Lektor</div>
+                    <p>Kładzie nacisk na practical grammar i budowanie bogatego zasobu słownictwa przydatnego na co dzień i w pracy.</p>
+                </div>
+                <div class="card">
+                    <h3>John Smith</h3>
+                    <div class="role">Native Speaker</div>
+                    <p>Prowadzi konwersacje z naciskiem na naturalny akcent, płynność wypowiedzi i przełamywanie oporów przed mówieniem.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- 3. SEKCJA: OFERTA (KLIKALNE KAFELKI) -->
+    <section id="oferta">
+        <h2>Nasza Oferta</h2>
+        <p class="section-desc">Kliknij w kafel kursu, aby zobaczyć jego pełny opis i harmonogram.</p>
+
+        <div class="grid-3">
+            
+            <!-- Kafel 1 -->
+            <a href="#kurs-egzaminacyjny" class="card-link">
+                <div class="card">
+                    <h3>Egzamin Ósmoklasisty & Matura</h3>
+                    <div class="role">Kursy Egzaminacyjne</div>
+                    <p>Kompleksowe przygotowanie pod kątem wymagań CKE. Praca na arkuszach, powtórki strukturalne i techniki rozwiązywania zadań.</p>
+                    <span class="click-more">Zobacz szczegóły kursu &rarr;</span>
+                </div>
+            </a>
+
+            <!-- Kafel 2 -->
+            <a href="#kurs-indywidualny" class="card-link">
+                <div class="card">
+                    <h3>Zajęcia Indywidualne</h3>
+                    <div class="role">Lekcje 1-na-1</div>
+                    <p>Program szyty na miarę. Idealne rozwiązanie dla osób potrzebujących elastycznego grafiku i indywidualnego tempa.</p>
+                    <span class="click-more">Zobacz szczegóły kursu &rarr;</span>
+                </div>
+            </a>
+
+            <!-- Kafel 3 -->
+            <a href="#kurs-konwersacyjny" class="card-link">
+                <div class="card">
+                    <h3>Kursy Konwersacyjne</h3>
+                    <div class="role">General & Business English</div>
+                    <p>Nacisk na swobodną dyskusję, rozwijanie słownictwa branżowego i pewność siebie w międzynarodowym środowisku.</p>
+                    <span class="click-more">Zobacz szczegóły kursu &rarr;</span>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- 4. SEKCJA: SZCZEGÓŁOWE OPISY KURSÓW (DOCELOWE MIEJSCA DLA KLIKNIĘĆ) -->
+    <div class="section-bg" id="szczegoly-kursow">
+        <section class="inner-section">
+            <h2>Szczegóły Kursów</h2>
+            <p class="section-desc">Zapoznaj się ze szczegółowym zakresem i formą prowadzenia zajęć.</p>
+
+            <!-- OPIS KURSU 1 -->
+            <div class="course-detail-box" id="kurs-egzaminacyjny">
+                <h3>Egzamin Ósmoklasisty & Matura (Podstawowa i Rozszerzona)</h3>
+                <div class="role" style="color: var(--uk-red); font-weight:700; margin-bottom:1rem;">Kursy Egzaminacyjne</div>
+                <p>Przygotowanie do oficjalnych egzaminów wymaga nie tylko wiedzy językowej, ale również znajomości specyfiki samych arkuszy egzaminacyjnych.</p>
+                
+                <ul>
+                    <li><strong>Co obejmuje kurs:</strong> Praca na autentycznych arkuszach CKE, intensywne powtórki z gramatyki, nauka pisania form wypowiedzi (np. e-mail, rozprawka, wpis na blogu).</li>
+                    <li><strong>Dla kogo:</strong> Uczniowie klas 8 szkół podstawowych oraz maturzyści.</li>
+                    <li><strong>Forma zajęć:</strong> Małe grupy (3-6 osób) lub indywidualnie.</li>
+                    <li><strong>Czas trwania:</strong> Wrzesień – Maj (zajęcia 1 lub 2 razy w tygodniu po 60/90 minut).</li>
+                </ul>
+
+                <div class="action-row">
+                    <a href="#kontakt" class="btn-secondary">Zapisz się na ten kurs</a>
+                    <a href="#oferta" class="btn-outline">&uarr; Powrót do oferty</a>
+                </div>
+            </div>
+
+            <!-- OPIS KURSU 2 -->
+            <div class="course-detail-box" id="kurs-indywidualny">
+                <h3>Zajęcia Indywidualne (1-na-1)</h3>
+                <div class="role" style="color: var(--uk-red); font-weight:700; margin-bottom:1rem;">Lekcje Dostosowane Do Ciebie</div>
+                <p>Zajęcia przeznaczone dla osób, które cenią sobie maksymalną elastyczność oraz uwagę lektora skupioną wyłącznie na ich potrzebach.</p>
+                
+                <ul>
+                    <li><strong>Co obejmuje kurs:</strong> Program układany po wstępnej analizie potrzeb i poziomu. Pomoc w bieżącym materiale szkolnym lub rozwijanie specjalistycznego słownictwa.</li>
+                    <li><strong>Dla kogo:</strong> Dzieci, młodzież oraz dorośli na każdym poziomie zaawansowania.</li>
+                    <li><strong>Forma zajęć:</strong> Spotkania stacjonarne lub online.</li>
+                    <li><strong>Elastyczność:</strong> Możliwość odwoływania i przekładania lekcji z wyprzedzeniem.</li>
+                </ul>
+
+                <div class="action-row">
+                    <a href="#kontakt" class="btn-secondary">Zapytaj o wolny termin</a>
+                    <a href="#oferta" class="btn-outline">&uarr; Powrót do oferty</a>
+                </div>
+            </div>
+
+            <!-- OPIS KURSU 3 -->
+            <div class="course-detail-box" id="kurs-konwersacyjny">
+                <h3>Kursy Konwersacyjne (General & Business English)</h3>
+                <div class="role" style="color: var(--uk-red); font-weight:700; margin-bottom:1rem;">Przełam Barierę Językową</div>
+                <p>Głównym celem tych zajęć jest opanowanie płynności mówienia, poprawa wymowy oraz pozbycie się lęku przed popełnianiem błędów.</p>
+                
+                <ul>
+                    <li><strong>Co obejmuje kurs:</strong> Dyskusje na aktualne tematy, analizę artykułów, scenki sytuacyjne, konwersacje z Native Speakerem.</li>
+                    <li><strong>Dla kogo:</strong> Osoby znające podstawy gramatyki, które chcą swobodnie rozmawiać w pracy lub podczas wyjazdów zagranicznych.</li>
+                    <li><strong>Forma zajęć:</strong> Konwersacje w małych grupach lub indywidualne sesje 1-na-1.</li>
+                </ul>
+
+                <div class="action-row">
+                    <a href="#kontakt" class="btn-secondary">Zapisz się na konwersacje</a>
+                    <a href="#oferta" class="btn-outline">&uarr; Powrót do oferty</a>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- 5. SEKCJA: KONTAKT -->
+    <section id="kontakt">
+        <h2>Skontaktuj się z nami</h2>
+        <p class="section-desc">Odpowiemy na wszystkie pytania i pomożemy dobrać odpowiednią grupę.</p>
+        
+        <div class="contact-box">
+            <div class="contact-item">
+                <h3>Lokalizacja</h3>
+                <p>ul. Przykładowa 12<br>62-081 Przeźmierowo</p>
+            </div>
+            <div class="contact-item">
+                <h3>Telefon i E-mail</h3>
+                <p>Tel: <a href="tel:+48123456789">+48 123 456 789</a></p>
+                <p>E-mail: <a href="mailto:kontakt@zdajebezproblemu.pl">kontakt@zdajebezproblemu.pl</a></p>
+            </div>
+            <div class="contact-item">
+                <h3>Godziny otwarcia</h3>
+                <p>Poniedziałek – Piątek: 12:00 – 19:00<br>Sobota – Niedziela: Zamknięte</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- STOPKA -->
+    <footer>
+        <p>&copy; 2026 Zdaję bez problemu — Szkoła Językowa. Wszelkie prawa zastrzeżone.</p>
+    </footer>
+
+</body>
+</html>
