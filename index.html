@@ -21,6 +21,169 @@
     <meta property="og:locale" content="pl_PL">
 
     <style>
+        /* UKŁAD SEKCJI KONTAKTOWEJ */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.contact-info-card, .contact-form-card {
+    background: var(--uk-white);
+    padding: 2.2rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 6px 18px rgba(1, 33, 105, 0.05);
+}
+
+.contact-info-card {
+    border-left: 6px solid var(--uk-red);
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-info-card h3, .contact-form-card h3 {
+    color: var(--uk-navy);
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.contact-subtext {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.contact-detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+}
+
+.contact-icon {
+    font-size: 1.3rem;
+    background: var(--bg-light);
+    padding: 0.5rem;
+    border-radius: 8px;
+    line-height: 1;
+}
+
+.contact-detail-item strong {
+    color: var(--uk-navy);
+    display: block;
+    margin-bottom: 0.2rem;
+}
+
+.contact-detail-item a {
+    color: var(--uk-red);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.contact-detail-item a:hover {
+    text-decoration: underline;
+}
+
+.response-badge {
+    padding: 0.75rem 1rem;
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    color: #166534;
+    border-radius: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+}
+
+/* STYL DLA KONTENERA MAPY GOOGLE */
+.map-container {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #cbd5e1;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    margin-top: auto;
+}
+
+.map-container iframe {
+    display: block;
+}
+
+/* STYLIZACJA FORMULARZA */
+.custom-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-group label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--uk-navy);
+}
+
+.form-group input, 
+.form-group select, 
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus, 
+.form-group select:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--uk-navy);
+    box-shadow: 0 0 0 3px rgba(1, 33, 105, 0.1);
+}
+
+.btn-submit {
+    background-color: var(--uk-red);
+    color: var(--uk-white);
+    border: none;
+    padding: 0.9rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-top: 0.5rem;
+}
+
+.btn-submit:hover {
+    background-color: #a00c24;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(200, 16, 46, 0.3);
+}
+
+/* RESPONSYWNOŚĆ DLA TELEFONÓW */
+@media (max-width: 868px) {
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
         /* CSS RESET & ZMIENNE KOLORÓW (BRITISH FLAG PALETTE) */
         :root {
             --uk-navy: #012169;      /* Głęboki granat brytyjski */
@@ -602,26 +765,109 @@
         </section>
     </div>
 
-    <!-- 5. SEKCJA: KONTAKT -->
+<!-- 5. SEKCJA: KONTAKT -->
     <section id="kontakt">
         <h2>Skontaktuj się z nami</h2>
-        <p class="section-desc">Masz pytania dotyczące kursów, matury lub egzaminu ósmoklasisty? Napisz lub zadzwoń!</p>
-        
-        <div class="contact-box">
-            <div class="contact-item">
-                <h3>Lokalizacja Szkoły</h3>
-                <p>ul. Rynkowa 41<br>62-081 Przeźmierowo</p>
-            </div>
-            <div class="contact-item">
-                <h3>Telefon i E-mail</h3>
-                <p>Tel: <a href="tel:+48509684553">+48 509 684 553</a></p>
-                <p>E-mail: <a href="mailto:zdajebezproblemu@gmail.com">zdajebezproblemu@gmail.com</a></p>
-            </div>
-        </div>
+        <p class="section-desc">Masz pytania dotyczące kursów, matury lub egzaminu ósmoklasisty? Napisz do nas lub zadzwoń – chętnie pomożemy!</p>
 
-        <div class="contact-item" style="background: var(--uk-white); padding: 2rem; border-radius: 10px; border: 1px solid #e2e8f0;">
-            <h3 style="margin-bottom: 1rem; color: var(--uk-navy);">Formularz kontaktowy</h3>
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSchEyO8eLYYc-ovBmLrpfpSK5Oa-1CGruSippZ9dPCZGmXMEA/viewform?embedded=true" width="100%" height="800" frameborder="0" marginheight="0" marginwidth="0">Ładowanie…</iframe>
+        <div class="contact-wrapper">
+            <!-- LEWA KOLUMNA: DANE KONTAKTOWE I MAPA -->
+            <div class="contact-info-card">
+                <h3>Dane kontaktowe</h3>
+                <p class="contact-subtext">Jesteśmy do Twojej dyspozycji. Skontaktuj się wygodnie przez formularz, telefon lub odwiedź nas stacjonarnie.</p>
+
+                <div class="contact-detail-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Lokalizacja Szkoły</strong>
+                        <p>ul. Rynkowa 41, 62-081 Przeźmierowo</p>
+                    </div>
+                </div>
+
+                <div class="contact-detail-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Telefon</strong>
+                        <p><a href="tel:+48509684553">+48 509 684 553</a></p>
+                    </div>
+                </div>
+
+                <div class="contact-detail-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>E-mail</strong>
+                        <p><a href="mailto:zdajebezproblemu@gmail.com">zdajebezproblemu@gmail.com</a></p>
+                    </div>
+                </div>
+
+                <div class="response-badge">
+                    ⚡ Odpowiadamy najczęściej w ciągu kilku godzin!
+                </div>
+
+                <!-- OSADZONA MAPA GOOGLE -->
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2433.823908861966!2d16.7865239!3d52.4280145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4704430bc8ad57b5%3A0x7d87bdceaa77c98f!2sRynkowa%2041%2C%2062-081%20Prze%C5%BAmierowo!5e0!2m2!1spl!2spl!4v1700000000000!5m2!1spl!2spl" 
+                        width="100%" 
+                        height="220" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+
+            <!-- PRAWA KOLUMNA: FORMULARZ KONTAKTOWY (WEB3FORMS) -->
+            <div class="contact-form-card">
+                <h3>Napisz wiadomość</h3>
+                <form action="https://api.web3forms.com/submit" method="POST" class="custom-form">
+                    
+                    <!-- Ukryte pole z Twoim kluczem Web3Forms -->
+                    <input type="hidden" name="access_key" value="TWOJ_KLUCZ_WEB3FORMS">
+                    
+                    <!-- Opcjonalnie: Tytuł wiadomości przychodzącej na e-mail -->
+                    <input type="hidden" name="subject" value="Nowa wiadomość ze strony Zdaję bez problemu!">
+
+                    <div class="form-group">
+                        <label for="name">Imię i Nazwisko / Imię Ucznia *</label>
+                        <input type="text" id="name" name="name" required placeholder="np. Anna Kowalska">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Adres E-mail *</label>
+                            <input type="email" id="email" name="email" required placeholder="np. anna@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Numer telefonu</label>
+                            <input type="tel" id="phone" name="phone" placeholder="np. 500 000 000">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="course">Interesujący Cię kurs / poziom</label>
+                        <select id="course" name="course">
+                            <option value="">-- Wybierz kurs --</option>
+                            <option value="Egzamin Ósmoklasisty">Egzamin Ósmoklasisty</option>
+                            <option value="Matura z Angielskiego">Matura z Angielskiego</option>
+                            <option value="Lekcje Indywidualne">Lekcje Indywidualne (1-na-1)</option>
+                            <option value="Zajęcia w Grupach">Zajęcia w Grupach</option>
+                            <option value="Inny">Inne pytanie</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Treść wiadomości *</label>
+                        <textarea id="message" name="message" rows="4" required placeholder="W czym możemy pomóc? Napisz klasę ucznia, pożądany termin lub pytanie..."></textarea>
+                    </div>
+
+                    <!-- Opcjonalnie: Dodanie anty-spam spaml (honeypot) od Web3Forms -->
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <button type="submit" class="btn-submit">Wyślij wiadomość &rarr;</button>
+                </form>
+            </div>
         </div>
     </section>
 
